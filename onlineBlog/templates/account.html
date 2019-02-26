@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="content-section">
+	  <div class="media">
+	    <img class="rounded-circle account-img" src="{{profile_image}}">
+	    <div class="media-body">
+	      <h2 class="account-heading">{{ current_user.username}}</h2>
+	      <p class="text-secondary">{{ current_user.email}}</p>
+	    </div>
+	  </div>
+	  <!-- FORM HERE -->
+	  <div class="content-section">
+	  	<form method="POST" enctype="multipart/form-data">
+    		{{form.hidden_tag()}}
+    		<div class="form-group">
+    			{{form.username.label(class='form-group')}}
+    			{{form.username(class='form-control')}}
+
+    			{% if form.username.errors %}
+
+			    {% for error in form.username.errors %}
+			      <p class="text-danger">{{ error }}</p>
+			    {% endfor %}
+
+				{% endif %}
+    		</div>
+    		<div class="form-group">
+    			{{form.email.label(class='form-group')}}
+    			{{form.email(class='form-control')}}
+
+    			{% if form.email.errors %}
+
+			    {% for error in form.email.errors %}
+			      <p class="text-danger">{{ error }}</p>
+			    {% endfor %}
+
+				{% endif %}
+    		</div>
+    		<div>
+    			{{form.picture.label(class='form-group')}}
+    			{{form.picture}}
+
+    			{% if form.picture.errors %}
+
+			    {% for error in form.picture.errors %}
+			      <p class="text-danger">{{ error }}</p>
+			    {% endfor %}
+
+				{% endif %}
+    		</div>
+    		<div class="form-group">
+    			{{form.submit(class='btn btn-dark btn-block')}}
+    		</div>
+
+    	</form>
+	  </div>
+	</div>
+{% endblock content %}
